@@ -28,7 +28,7 @@ A solução proposta é uma aplicação web que permita ao cliente selecionar um
 - Faça um clone do projeto e abra na usa IDE de preferência.
 - Rode o projeto com o comando `docker compose up -d` para iniciar o servidor.
 - Acesse a documentação da API em `http://localhost:8080/restaurante/swagger-ui.html` para ver os endpoints disponíveis
-- Importe o arquivo `gestao-hospitalar.postman_collection.json` no Postman para ter acesso aos endpoints já configurados.
+- Importe o arquivo `restaurante-api.postman_collection.json` no Postman para ter acesso aos endpoints já configurados.
 
 ## O que eu sei fazer, porém não deu tempo
 
