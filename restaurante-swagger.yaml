@@ -1,0 +1,329 @@
+openapi: 3.0.1
+info:
+  title: Restaurante API
+  description: API para gestão de restaurantes
+  contact:
+    name: Yuri Nascimento
+    url: https://github.com/yuriidiiego
+    email: yuriidiiego@gmail.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: "1.0"
+servers:
+  - url: http://localhost:8080
+    description: Local server
+tags:
+  - name: Pedidos
+    description: Endpoints para criação e consulta de pedidos
+  - name: Ingrediente
+    description: "Endpoints para criação, consulta e atualização de ingredientes"
+  - name: Lanches
+    description: Endpoints para criação e consulta de lanches
+paths:
+  /ingredientes/{id}/preco:
+    put:
+      tags:
+        - Ingrediente
+      summary: Atualiza o preço de um ingrediente
+      operationId: updatePrecoIngrediente
+      parameters:
+        - name: ID
+          in: path
+          description: ID do ingrediente
+          required: true
+          schema:
+            type: string
+          example: 63ff6fd6f5a034518fd77771
+        - name: preco
+          in: query
+          description: Preço do ingrediente
+          required: true
+          schema:
+            type: number
+          example: 10.0
+      responses:
+        "200":
+          description: Atualiza o preço de um ingrediente
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/IngredienteResponse"
+        "404":
+          description: Ingrediente não encontrado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "400":
+          description: Erro de validação
+  /pedidos:
+    post:
+      tags:
+        - Pedidos
+      summary: Cria um pedido personalizado
+      description: Cria um pedido personalizado
+      operationId: criarPedidoPersonalizado
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CriarPedidoPersonalizadoRequest"
+        required: true
+      responses:
+        "201":
+          description: Cria um pedido personalizado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Pedido"
+        "400":
+          description: Erro de validação
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /lanches:
+    get:
+      tags:
+        - Lanches
+      summary: Lista todos os lanches
+      operationId: getAllLanches
+      responses:
+        "200":
+          description: Lista todos os lanches
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/LancheResponse"
+    post:
+      tags:
+        - Lanches
+      summary: Cria um novo lanche
+      operationId: addLanche
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LancheRequest"
+        required: true
+      responses:
+        "201":
+          description: Cria um novo lanche
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LancheResponse"
+        "400":
+          description: Erro de validação
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /ingredientes:
+    get:
+      tags:
+        - Ingrediente
+      summary: Retorna todos os ingredientes cadastrados
+      operationId: getAllIngredientes
+      responses:
+        "200":
+          description: Retorna todos os ingredientes cadastrados
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/IngredienteResponse"
+    post:
+      tags:
+        - Ingrediente
+      summary: Cria um novo ingrediente
+      operationId: addIngrediente
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/IngredienteRequest"
+        required: true
+      responses:
+        "201":
+          description: Cria um novo ingrediente
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/IngredienteResponse"
+        "400":
+          description: Erro de validação
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /lanches/{id}:
+    get:
+      tags:
+        - Lanches
+      summary: Retorna um lanche pelo id
+      operationId: getLancheById
+      parameters:
+        - name: id
+          in: path
+          description: Id do lanche
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Retorna um lanche pelo id
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LancheResponse"
+components:
+  schemas:
+    IngredienteResponse:
+      type: object
+      properties:
+        ID:
+          type: string
+          description: ID do ingrediente
+          example: "1"
+        Nome:
+          type: string
+          description: Nome do ingrediente
+          example: Tomate
+        Preço:
+          type: number
+          description: Preço do ingrediente
+          example: 10.0
+      description: DTO de resposta para criação de um novo ingrediente
+    ErrorResponse:
+      type: object
+      properties:
+        statuscode:
+          type: integer
+          format: int32
+        timestamp:
+          type: string
+          format: date-time
+        erro:
+          type: string
+    Ingrediente:
+      type: object
+      properties:
+        id:
+          type: string
+        nome:
+          type: string
+        preco:
+          type: number
+      description: Entidade para representar um ingrediente
+    Lanche:
+      type: object
+      properties:
+        id:
+          type: string
+        nome:
+          type: string
+        ingredientes:
+          type: array
+          items:
+            $ref: "#/components/schemas/Ingrediente"
+        preco:
+          type: number
+      description: Entidade para representar um lanche
+    Pedido:
+      type: object
+      properties:
+        id:
+          type: string
+        lanches:
+          type: array
+          items:
+            $ref: "#/components/schemas/Lanche"
+        dataHora:
+          type: string
+          format: date-time
+        valorTotal:
+          type: number
+      description: Entidade para representar um pedido
+    CriarPedidoPersonalizadoRequest:
+      required:
+        - ingredientesOpcionaisIds
+        - lanchesIds
+      type: object
+      properties:
+        lanchesIds:
+          type: array
+          description: IDs dos lanches
+          example: "[63ff6fd6f5a034518fd77771, 61d9c78b812774a5c10ba7f5]"
+          items:
+            type: string
+            description: IDs dos lanches
+            example: "[63ff6fd6f5a034518fd77771, 61d9c78b812774a5c10ba7f5]"
+        ingredientesOpcionaisIds:
+          type: array
+          description: IDs dos ingredientes opcionais
+          example: "[63ff6fd6f5a034518fd77771, 61d9c78b812774a5c10ba7f5]"
+          items:
+            type: string
+            description: IDs dos ingredientes opcionais
+            example: "[63ff6fd6f5a034518fd77771, 61d9c78b812774a5c10ba7f5]"
+      description: DTO para criação de um novo pedido
+    LancheResponse:
+      type: object
+      properties:
+        ID:
+          type: string
+          description: ID do lanche
+          example: "1"
+        Nome:
+          type: string
+          description: Nome do lanche
+          example: X-Burguer
+        Ingredientes:
+          type: array
+          description: Ingredientes do lanche
+          items:
+            $ref: "#/components/schemas/Ingrediente"
+        Preço:
+          type: number
+          description: Preço do lanche
+          example: 10.0
+      description: DTO de resposta para criação de um novo lanche
+    LancheRequest:
+      required:
+        - Nome
+      type: object
+      properties:
+        Nome:
+          type: string
+          description: Nome do lanche
+          example: X-Burguer
+        Ingredientes:
+          type: array
+          description: Ingredientes do lanche
+          items:
+            type: string
+            description: Ingredientes do lanche
+      description: DTO para criação de um novo lanche
+    IngredienteRequest:
+      required:
+        - Nome
+        - Preço
+      type: object
+      properties:
+        Nome:
+          maxLength: 2147483647
+          minLength: 3
+          type: string
+          description: Nome do ingrediente
+          example: Tomate
+        Preço:
+          minimum: 0
+          type: number
+          description: Preço do ingrediente
+          example: 10.0
+      description: DTO para criação de um novo ingrediente

@@ -1,0 +1,208 @@
+{
+  "info": {
+    "_postman_id": "675e0356-1393-4592-825f-4edc363a54b1",
+    "name": "Restaurante API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "17690371"
+  },
+  "item": [
+    {
+      "name": "ingrediente",
+      "item": [
+        {
+          "name": "Cria um ingrediente.",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"nome\": \"Queijo mussarela\",\n    \"preco\": 12.50\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/ingredientes",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["ingredientes"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Retorna todos os ingredientes.",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/ingredientes",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["ingredientes"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Atualiza o preço do ingrediente.",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/ingredientes/63ff6fd6f5a034518fd77771/preco?novoPreco=1.50",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["ingredientes", "63ff6fd6f5a034518fd77771", "preco"],
+              "query": [
+                {
+                  "key": "novoPreco",
+                  "value": "1.50"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Lanche",
+      "item": [
+        {
+          "name": "Cria um lanche.",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"nome\": \"X-Bacon\",\n        \"ingredientes\": [\n            \"640019740cd614172afb4148\",\n            \"640019740cd614172afb4149\",\n            \"640019740cd614172afb414b\"\n    ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/lanches",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["lanches"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Retorna todos os lanches.",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/lanches",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["lanches"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Retorna um lanche pelo id.",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/lanches/64001e8415fae73f46dd07cd",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["lanches", "64001e8415fae73f46dd07cd"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "pedido",
+      "item": [
+        {
+          "name": "Cria um pedido personalizado.",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"lanchesIds\": [\"64001e8415fae73f46dd07cd\"],\n  \"ingredientesOpcionaisIds\": [\"64001cdb7ac08a4793a531fa\", \"64001cdb7ac08a4793a531fd\"]\n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/pedidos",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["pedidos"]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
