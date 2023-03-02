@@ -1,7 +1,6 @@
 # Gerenciador de Lanchonete
 
 Esse é um projeto para uma aplicação web que gerencia uma lanchonete que vende lanches personalizados e opções de cardápio.
-Descrição do problema
 
 A lanchonete vende lanches personalizados e opções de cardápio. Cada lanche é composto por uma ou mais opções de ingredientes, que podem ser selecionados pelo cliente.
 
