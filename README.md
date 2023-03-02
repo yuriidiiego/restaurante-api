@@ -20,7 +20,6 @@ As opções de cardápio e seus respectivos ingredientes são:
 - [x] X-Egg Bacon: Ovo, bacon, hambúrguer de carne e queijo
 
 O preço de cada opção do cardápio é dado pela soma dos ingredientes que compõe o lanche. Se o cliente escolher ingredientes personalizados, o preço do lanche será calculado pela soma dos ingredientes escolhidos.
-Solução proposta
 
 A solução proposta é uma aplicação web que permita ao cliente selecionar uma opção de cardápio ou criar um lanche personalizado, selecionando os ingredientes desejados. A aplicação deve calcular o preço do lanche e permitir ao cliente fazer o pedido.
 
@@ -32,6 +31,8 @@ A solução proposta é uma aplicação web que permita ao cliente selecionar um
 - Importe o arquivo `gestao-hospitalar.postman_collection.json` no Postman para ter acesso aos endpoints já configurados.
 
 ## O que eu sei fazer, porém não deu tempo
+
+Algumas funcionalidades que não foram implementadas por falta de tempo:
 
 - Autorização e autenticação com Spring Security e JWT
 - Testes de unidade e integração
