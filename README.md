@@ -2,7 +2,7 @@
 
 Esse é um projeto para uma aplicação web que gerencia uma lanchonete que vende lanches personalizados e opções de cardápio.
 
-A lanchonete vende lanches personalizados e opções de cardápio. Cada lanche é composto por uma ou mais opções de ingredientes, que podem ser selecionados pelo cliente.
+Cada lanche é composto por uma ou mais opções de ingredientes, que podem ser selecionados pelo cliente.
 
 Os ingredientes disponíveis são:
 
@@ -30,7 +30,7 @@ A solução proposta é uma aplicação web que permita ao cliente selecionar um
 - Acesse a documentação da API em `http://localhost:8080/restaurante/swagger-ui.html` para ver os endpoints disponíveis
 - Importe o arquivo `restaurante-api.postman_collection.json` no Postman para ter acesso aos endpoints já configurados.
 
-## O que eu sei fazer, porém não deu tempo
+## O que ainda irei implementar
 
 Algumas funcionalidades que não foram implementadas por falta de tempo:
 
